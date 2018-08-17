@@ -1,0 +1,22 @@
+version: '3.1'
+services:
+  vpnserver:
+    build: .
+    privileged: true
+    network_mode: "host"
+    ports:
+      - 443:443
+      - 992:992
+      - 5555:5555
+      - 1194/udp:1194/udp
+      - 500/udp:500/udp
+      - 1701/udp:1701/udp
+      - 4500/udp:4500/udp
+    volumes:
+      - ./vpnserver/backup.vpn_server.config:/opt/vpnserver/backup.vpn_server.config
+      - ./vpnserver/chain_certs:/opt/vpnserver/chain_certs
+      - ./vpnserver/lang.config:/opt/vpnserver/lang.config
+      - ./vpnserver/packet_log:/opt/vpnserver/packet_log
+      - ./vpnserver/security_log:/opt/vpnserver/security_log
+      - ./vpnserver/server_log:/opt/vpnserver/server_log
+      - ./vpnserver/vpn_server.config:/opt/vpnserver/vpn_server.config
